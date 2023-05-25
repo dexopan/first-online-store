@@ -5,7 +5,6 @@ import { useSelector } from 'react-redux'
 
 const AppRouter = () => {
 	const isAuth = useSelector(state => state.auth.isAuth)
-
 	return (
 		<Routes>
 			{isAuth && authRoutes.map(({ path, Component }) =>
@@ -16,7 +15,6 @@ const AppRouter = () => {
 				<Route key={path} path={path} element={<Component />} />
 			)}
 			<Route path='*' element={<Navigate to="/" replace />} />
-
 		</Routes>
 	)
 }
