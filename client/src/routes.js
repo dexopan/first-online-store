@@ -1,10 +1,10 @@
-import { ADMIN_ROUTE, BASKET_ROUTE } from "../utils/const"
-import { DEVICE_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE } from "../utils/const"
-import Admin from "../pages/Admin.jsx"
-import Basket from "../pages/Basket.jsx"
-import Auth from "../pages/Auth.jsx"
-import Shop from "../pages/Shop.jsx"
-import DevicePage from "../pages/DevicePage.jsx"
+import { ADMIN_ROUTE, BASKET_ROUTE } from "./utils/const"
+import { DEVICE_ROUTE, LOGIN_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE } from "./utils/const"
+import Admin from "./pages/Admin.jsx"
+import Basket from "./pages/Basket.jsx"
+import Auth from "./pages/Auth.jsx"
+import Shop from "./pages/Shop.jsx"
+import DevicePage from "./pages/DevicePage.jsx"
 
 
 
