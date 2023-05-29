@@ -8,13 +8,19 @@ import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux';
 import { isAuthenticated } from '../store/authSlice';
+import { setUser } from '../store/userSlice';
 import { useNavigate } from 'react-router-dom';
 
 function NavBar() {
 	const isAuth = useSelector(state => state.auth.isAuth)
 	const dispatch = useDispatch()
-
 	const navigate = useNavigate()
+
+	const logout = () => {
+		dispatch(isAuthenticated(false))
+		dispatch(setUser({}))
+		localStorage.removeItem('token')
+	}
 
 
 
@@ -25,11 +31,11 @@ function NavBar() {
 				{isAuth ?
 					<Nav className="ml-auto" >
 						<Button onClick={() => navigate(ADMIN_ROUTE)} variant={'outline-light'}>Admin panel</Button>
-						<Button onClick={() => navigate(LOGIN_ROUTE)} variant={'outline-light'} style={{ marginLeft: '0.5rem' }}>Sign out</Button>
+						<Button onClick={() => logout()} variant={'outline-light'} style={{ marginLeft: '0.5rem' }}>Sign out</Button>
 					</Nav>
 					:
 					<Nav className="ml-auto" >
-						<Button variant={'outline-light'} onClick={() => dispatch(isAuthenticated(true))}>Authorisation</Button>
+						<Button variant={'outline-light'} onClick={() => navigate(LOGIN_ROUTE)}>Authorisation</Button>
 					</Nav>
 				}
 
