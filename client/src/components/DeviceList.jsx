@@ -7,8 +7,8 @@ const DeviceList = () => {
 	const device = useSelector(state => state.device)
 	return (
 		<Row className='d-flex'>
-			{device.devices.map(device =>
-				<DeviceItem key={device.id} device={device} />
+			{device.devices.map(d =>
+				<DeviceItem key={d.id} device={d} />
 			)}
 		</Row>
 

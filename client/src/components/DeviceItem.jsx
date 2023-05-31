@@ -7,8 +7,11 @@ import { useNavigate } from 'react-router-dom'
 import { DEVICE_ROUTE } from '../utils/const'
 
 
+
 const DeviceItem = ({ device }) => {
 	const navigate = useNavigate()
+
+
 
 	return (
 		<Col md={3} className='mt-3' onClick={() => navigate(DEVICE_ROUTE + '/' + device.id)} >

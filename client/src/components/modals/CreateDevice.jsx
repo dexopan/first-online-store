@@ -51,7 +51,7 @@ const CreateDevice = ({ show, onHide }) => {
 		formData.append('brandId', selectedBrand.id)
 		formData.append('typeId', selectedType.id)
 		formData.append('info', JSON.stringify(info))
-		createDevice(formData).then(data => onHide())
+		createDevice(formData).then(() => onHide())
 	}
 
 
