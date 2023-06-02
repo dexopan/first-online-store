@@ -11,7 +11,7 @@ import { fetchOneDevice } from '../http/deviceAPI'
 
 
 const DevicePage = () => {
-	const [device, setDevice] = useState({ info: [] })
+	const [device, setDevice] = useState({ info: [], img: '9cd1fd1c-9f88-47f9-ba26-2982752a3f9e.jpg' })
 	const { id } = useParams()
 
 	useEffect(() => {
