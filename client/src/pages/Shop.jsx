@@ -5,19 +5,28 @@ import Col from 'react-bootstrap/Col'
 import TypeBar from '../components/TypeBar'
 import BrandBar from '../components/BrandBar'
 import DeviceList from '../components/DeviceList'
-import { setTypes, setBrands, setDevices } from '../store/deviceSlice'
-import { useDispatch } from 'react-redux'
+import Pages from '../components/Pages'
+import { setTypes, setBrands, setDevices, setTotalCount, setPage } from '../store/deviceSlice'
+import { useDispatch, useSelector } from 'react-redux'
 import { fetchTypes, fetchBrands, fetchDevices } from '../http/deviceAPI'
+
 
 const Shop = () => {
 	const dispatch = useDispatch()
 
+	const { limit, page, selectedType, selectedBrand } = useSelector(state => state.device)
+
 	useEffect(() => {
 		fetchTypes().then(data => dispatch(setTypes(data)))
 		fetchBrands().then(data => dispatch(setBrands(data)))
-		fetchDevices().then(data => dispatch(setDevices(data.rows)))
-
 	}, [])
+
+	useEffect(() => {
+		fetchDevices(selectedType.id, selectedBrand.id, limit, page).then(data => {
+			dispatch(setDevices(data.rows))
+			dispatch(setTotalCount(data.count))
+		})
+	}, [selectedType, selectedBrand, limit, page])
 
 
 	return (
@@ -29,6 +38,7 @@ const Shop = () => {
 				<Col md={9}>
 					<BrandBar />
 					<DeviceList />
+					<Pages />
 				</Col>
 
 			</Row>

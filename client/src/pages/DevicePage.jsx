@@ -11,7 +11,7 @@ import { fetchOneDevice } from '../http/deviceAPI'
 
 
 const DevicePage = () => {
-	const [device, setDevice] = useState({ info: [], img: '9cd1fd1c-9f88-47f9-ba26-2982752a3f9e.jpg' })
+	const [device, setDevice] = useState({ info: [] })
 	const { id } = useParams()
 
 	useEffect(() => {
@@ -22,7 +22,7 @@ const DevicePage = () => {
 		<Container className='mt-3'>
 			<Row>
 				<Col className='d-flex align-items-center justify-content-center' md={4}>
-					<Image width={300} height={300} src={process.env.REACT_APP_API_URL + device.img} />
+					{device.img && <Image width={300} height={300} src={process.env.REACT_APP_API_URL + device.img} />}
 				</Col>
 				<Col className='d-flex align-items-center justify-content-center' md={4}>
 					<Row className='d-flex flex-column align-items-center'>
