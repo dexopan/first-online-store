@@ -9,6 +9,14 @@ const BrandBar = () => {
 	const device = useSelector(state => state.device)
 	const dispatch = useDispatch()
 
+	const selectBrand = (brand) => {
+		if (brand.id === device.selectedBrand.id) {
+			return dispatch(setSelectedBrand({}))
+		}
+		return dispatch(setSelectedBrand(brand))
+	}
+
+
 	return (
 
 		<Col className='d-flex'>
@@ -19,7 +27,7 @@ const BrandBar = () => {
 					}}
 					key={brand.id}
 					className='p-3'
-					onClick={() => dispatch(setSelectedBrand(brand))}
+					onClick={() => selectBrand(brand)}
 					border={brand.id === device.selectedBrand.id ? 'dark' : 'light'}
 				>
 					{brand.name}

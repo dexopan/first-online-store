@@ -10,7 +10,7 @@ const deviceSlice = createSlice({
 		selectedBrand: {},
 		page: 1,
 		totalCount: 0,
-		limit: 5
+		limit: 4
 	},
 	reducers: {
 		setTypes(state, action) {
@@ -24,9 +24,11 @@ const deviceSlice = createSlice({
 		},
 		setSelectedType(state, action) {
 			state.selectedType = action.payload;
+			state.page = 1;
 		},
 		setSelectedBrand(state, action) {
 			state.selectedBrand = action.payload;
+			state.page = 1;
 		},
 		setPage(state, action) {
 			state.page = action.payload;
