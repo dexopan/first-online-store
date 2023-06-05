@@ -1,6 +1,6 @@
 import ApiError from '../error/ApiError.js'
 import bcrypt from 'bcrypt'
-import { User, Basket } from '../models/models.js'
+import { User } from '../models/models.js'
 import jwt from 'jsonwebtoken'
 
 const generateJwt = (id, email, role) => {
@@ -20,7 +20,6 @@ class UserController {
 			}
 			const hashPassword = await bcrypt.hash(password, 5)
 			const user = await User.create({ email, role, password: hashPassword })
-			const basket = await Basket.create({ userId: user.id })
 			const token = generateJwt(user.id, user.email, user.role)
 			return res.json({ token })
 		} catch (error) {

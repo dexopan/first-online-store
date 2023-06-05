@@ -6,6 +6,7 @@ const deviceSlice = createSlice({
 		types: [],
 		brands: [],
 		devices: [],
+		basket: [],
 		selectedType: {},
 		selectedBrand: {},
 		page: 1,
@@ -38,10 +39,29 @@ const deviceSlice = createSlice({
 		},
 		setLimit(state, action) {
 			state.limit = action.payload;
-		}
+		},
+		removeDeviceFromBasket(state, action) {
+			state.basket = state.basket.filter(device => device.id !== action.payload);
+		},
+		setBasket(state, action) {
+			state.basket = action.payload;
+		},
+
 	}
 })
 
-export const { setTypes, setBrands, setDevices, setSelectedBrand, setSelectedType, setPage, setTotalCount, setLimit } = deviceSlice.actions;
+export const {
+	setTypes,
+	setBrands,
+	setDevices,
+	setSelectedBrand,
+	setSelectedType,
+	setPage,
+	setTotalCount,
+	setLimit,
+	setBasket,
+	removeDeviceFromBasket,
+	setDeviceToBasket
+} = deviceSlice.actions;
 
 export default deviceSlice.reducer;

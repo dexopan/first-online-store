@@ -1,15 +1,18 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
-import { ADMIN_ROUTE, LOGIN_ROUTE, SHOP_ROUTE } from '../utils/const';
+import { Image } from 'react-bootstrap';
+import basket from '../assets/basket.png'
+import { ADMIN_ROUTE, BASKET_ROUTE, LOGIN_ROUTE, SHOP_ROUTE } from '../utils/const';
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux';
 import { isAuthenticated } from '../store/authSlice';
 import { setUser } from '../store/userSlice';
-import { useNavigate } from 'react-router-dom';
 import { setSelectedBrand, setSelectedType } from '../store/deviceSlice';
+
 
 
 function NavBar() {
@@ -32,7 +35,7 @@ function NavBar() {
 	}
 
 	const checkRole = (role) => {
-		if (user.role === 'ADMIN') {
+		if (user.role === role) {
 			return true
 		}
 		return false
@@ -44,11 +47,20 @@ function NavBar() {
 				checkRole('ADMIN') ?
 					<Nav className="ml-auto" >
 						<Button onClick={() => navigate(ADMIN_ROUTE)} variant={'outline-light'}>Admin panel</Button>
-						<Button onClick={() => logout()} variant={'outline-light'} style={{ marginLeft: '0.5rem' }}>Sign out</Button>
+						<Image
+							style={{ marginLeft: '1.5rem', marginTop: '0.25rem', cursor: 'pointer' }}
+							width={40} height={40} src={basket}
+							onClick={() => navigate(BASKET_ROUTE + '/' + user.id)} />
+						<Button onClick={() => logout()} variant={'outline-light'} style={{ marginLeft: '1.5rem' }}>Sign out</Button>
 					</Nav>
 					:
 					<Nav className="ml-auto" >
-						<Button onClick={() => logout()} variant={'outline-light'} style={{ marginLeft: '0.5rem' }}>Sign out</Button>
+						<Image
+							style={{ marginLeft: '0.5rem', marginTop: '0.25rem', cursor: 'pointer' }}
+							width={40} height={40} src={basket}
+							onClick={() => navigate(BASKET_ROUTE + '/' + user.id)}
+						/>
+						<Button onClick={() => logout()} variant={'outline-light'} style={{ marginLeft: '1.5rem' }}>Sign out</Button>
 					</Nav>)
 		}
 		else {
@@ -60,7 +72,7 @@ function NavBar() {
 	}
 
 	return (
-		<Navbar Navbar bg="dark" variant="dark" >
+		<Navbar bg="dark" variant="dark" >
 			<Container>
 				<div style={{ color: 'white', textDecoration: 'none', cursor: 'pointer' }} onClick={relocate}>Device Point</div>
 				{navBarButtons()}

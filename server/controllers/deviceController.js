@@ -2,7 +2,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { fileURLToPath } from 'url';
 import * as path from 'path';
 import { dirname } from 'path';
-import { Device, DeviceInfo } from '../models/models.js'
+import { Device, DeviceInfo, Basket, BasketDevice } from '../models/models.js'
 import ApiError from '../error/ApiError.js'
 
 class DeviceController {
@@ -72,6 +72,15 @@ class DeviceController {
 		} catch (error) {
 			next(ApiError.badRequest(error.message))
 		}
+	}
+
+	async createBasketDevice(req, res, next) {
+		const { id, userId } = req.body;
+		const userBasket = await Basket.findOne({ where: { userId } });
+		console.log(userBasket)
+		const deviceBasket = await BasketDevice.create({ deviceId: id, basketId: userBasket.id });
+		console.log(deviceBasket)
+		return res.json(deviceBasket);
 	}
 
 }

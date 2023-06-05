@@ -8,11 +8,15 @@ import Button from 'react-bootstrap/Button'
 import star from '../assets/star.png'
 import { useParams } from 'react-router-dom'
 import { fetchOneDevice } from '../http/deviceAPI'
+import { useSelector } from 'react-redux'
+import { addDeviceToBasket } from '../http/basketAPI'
 
 
 const DevicePage = () => {
 	const [device, setDevice] = useState({ info: [] })
+	const user = useSelector(state => state.user.user)
 	const { id } = useParams()
+
 
 	useEffect(() => {
 		fetchOneDevice(id).then(data => setDevice(data))
@@ -41,7 +45,7 @@ const DevicePage = () => {
 						style={{ width: 300, height: 300, fontSize: 32, border: '5px solid lightgray' }}
 					>
 						<h3>From: {device.price} RUB</h3>
-						<Button variant={'outline-dark'}>Add to basket</Button>
+						<Button onClick={() => addDeviceToBasket(id, user.id)} variant={'outline-dark'}>Add to basket</Button>
 					</Card>
 				</Col>
 			</Row>

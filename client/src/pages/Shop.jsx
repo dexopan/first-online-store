@@ -6,7 +6,7 @@ import TypeBar from '../components/TypeBar'
 import BrandBar from '../components/BrandBar'
 import DeviceList from '../components/DeviceList'
 import Pages from '../components/Pages'
-import { setTypes, setBrands, setDevices, setTotalCount, setPage } from '../store/deviceSlice'
+import { setTypes, setBrands, setDevices, setTotalCount } from '../store/deviceSlice'
 import { useDispatch, useSelector } from 'react-redux'
 import { fetchTypes, fetchBrands, fetchDevices } from '../http/deviceAPI'
 
@@ -40,11 +40,8 @@ const Shop = () => {
 					<DeviceList />
 					<Pages />
 				</Col>
-
 			</Row>
-
 		</Container>
-
 	)
 }
 
